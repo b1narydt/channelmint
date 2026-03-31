@@ -1,5 +1,6 @@
 import { createDatabase } from './connection.js'
 import { loadConfig } from '../config/index.js'
+import { down as downServiceListings } from './migrations/009_create_service_listings.js'
 import { down as downPurchases } from './migrations/008_create_purchases.js'
 import { down as downContentPricing } from './migrations/007_create_content_pricing.js'
 import { down as downRates } from './migrations/006_create_rates.js'
@@ -14,6 +15,7 @@ const db = createDatabase(config.databaseUrl)
 
 async function rollback (): Promise<void> {
   console.log('Rolling back migrations...')
+  await downServiceListings(db)
   await downPurchases(db)
   await downContentPricing(db)
   await downRates(db)
