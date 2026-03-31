@@ -9,6 +9,8 @@ import { up as upRates } from '../db/migrations/006_create_rates.js'
 import { up as upContentPricing } from '../db/migrations/007_create_content_pricing.js'
 import { up as upPurchases } from '../db/migrations/008_create_purchases.js'
 import { up as upServiceListings } from '../db/migrations/009_create_service_listings.js'
+import { up as upChannelEvents } from '../db/migrations/010_create_channel_events.js'
+import { up as upUsageSummaries } from '../db/migrations/011_create_usage_summaries.js'
 import type { Knex } from 'knex'
 import type express from 'express'
 
@@ -29,6 +31,8 @@ export async function createTestContext (): Promise<TestContext> {
   await upContentPricing(db)
   await upPurchases(db)
   await upServiceListings(db)
+  await upChannelEvents(db)
+  await upUsageSummaries(db)
 
   const app = createApp(db)
 
