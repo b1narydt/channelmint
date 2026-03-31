@@ -9,6 +9,8 @@ import { up as upRates } from './migrations/006_create_rates.js'
 import { up as upContentPricing } from './migrations/007_create_content_pricing.js'
 import { up as upPurchases } from './migrations/008_create_purchases.js'
 import { up as upServiceListings } from './migrations/009_create_service_listings.js'
+import { up as upChannelEvents } from './migrations/010_create_channel_events.js'
+import { up as upUsageSummaries } from './migrations/011_create_usage_summaries.js'
 
 const config = loadConfig()
 const db = createDatabase(config.databaseUrl)
@@ -24,6 +26,8 @@ async function migrate (): Promise<void> {
   await upContentPricing(db)
   await upPurchases(db)
   await upServiceListings(db)
+  await upChannelEvents(db)
+  await upUsageSummaries(db)
   console.log('Migrations complete.')
   await db.destroy()
 }
